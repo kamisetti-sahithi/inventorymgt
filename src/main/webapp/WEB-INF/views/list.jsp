@@ -6,25 +6,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>All Employees</title>
+<title>All Suppliers</title>
 </head>
 <body>
 
-<h1>Listing all employees</h1>
+<h1>Listing all Suppliers</h1>
 
-<c:forEach items="${employees}"  var="employee">
 
-<c:out value="${employee.id}"  />
+<c:forEach items="${suppliers}"  var="supplier">
 
-<c:out value="${employee.name}"  />
-<c:out value="${employee.salary}"  />
-<c:out value="${employee.age}"  />
+<c:out value="${supplier.id}"  />
+
+<c:out value="${supplier.name}"  />
 
 <br>
 </c:forEach>
-
-
-<a href="/logout"> Log out </a>
 
 </body>
 </html>

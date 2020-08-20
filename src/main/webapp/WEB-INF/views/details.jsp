@@ -6,22 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Employee Details</title>
+<title>Supplier Details</title>
 </head>
 <body>
 
-<h1>Employee Details </h1>
+<h1>Supplier Details </h1>
 
-id is <c:out value="${employee.id}"  />
+id is <c:out value="${supplier.id}"  />
 <br>
-name is <c:out value="${employee.name}"  />
+name is <c:out value="${supplier.name}"  />
 <br>
-salary is <c:out value="${employee.salary}"  />
-<br>
-age is <c:out value="${employee.age}"  />
 
-
-<a href="/logout"> Log out </a>
 
 </body>
 </html>
