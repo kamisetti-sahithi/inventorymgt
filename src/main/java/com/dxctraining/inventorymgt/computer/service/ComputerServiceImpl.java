@@ -1,5 +1,7 @@
 package com.dxctraining.inventorymgt.computer.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dxctraining.inventorymgt.computer.dao.*;
 import com.dxctraining.inventorymgt.computer.entities.*;
 import com.dxctraining.inventorymgt.computer.exceptions.*;
+import com.dxctraining.inventorymgt.phone.entities.Phone;
 
 @Transactional
 @Service
@@ -42,6 +45,12 @@ public class ComputerServiceImpl implements IComputerService {
 		validate(id);
 		Computer computer = dao.remove(id);
 		return computer;
+	}
+
+	@Override
+	public List<Computer> listAll() {
+		List<Computer>computers=dao.listAll();
+        return computers ;
 	}
 	
 	

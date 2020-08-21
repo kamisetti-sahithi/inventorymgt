@@ -1,12 +1,16 @@
 package com.dxctraining.inventorymgt.computer.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
 import com.dxctraining.inventorymgt.computer.entities.*;
 import com.dxctraining.inventorymgt.computer.exceptions.*;
+import com.dxctraining.inventorymgt.phone.entities.Phone;
 
 @Repository
 public class ComputerDaoImpl implements IComputerDao {
@@ -35,6 +39,15 @@ public class ComputerDaoImpl implements IComputerDao {
 		Computer computer = findComputerById(id);
 		entityManager.remove(computer);
 		return computer;
+		
+	}
+
+	@Override
+	public List<Computer> listAll() {
+		String jpaql="from computers";
+        TypedQuery<Computer>query=entityManager.createQuery(jpaql,Computer.class);
+        List<Computer>computerlist=query.getResultList();
+        return computerlist;
 		
 	}
 	

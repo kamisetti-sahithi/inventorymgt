@@ -1,5 +1,7 @@
 package com.dxctraining.inventorymgt.phone.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +41,13 @@ public class PhoneServiceImpl implements IPhoneService{
     public void remove(int id) {
        dao.remove(id);
     }
+
+
+	@Override
+	public List<Phone> listAll() {
+		 List<Phone>phones=dao.listAll();
+	        return phones;
+	}
 
   
 }
