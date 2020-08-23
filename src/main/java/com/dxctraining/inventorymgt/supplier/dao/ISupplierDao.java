@@ -14,4 +14,6 @@ public interface ISupplierDao {
 
 	Supplier addSupplier(Supplier supplier);
 
+   Supplier updateSupplier(Supplier supplier);
+
 }

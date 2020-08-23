@@ -28,8 +28,8 @@ public class ComputerController {
 
 	@PostConstruct
 	public void run() {
-		Supplier supplier1 = new Supplier("yasaswini");
-		Supplier supplier2 = new Supplier("navya");
+		Supplier supplier1 = new Supplier("yasaswini","sahithi");
+		Supplier supplier2 = new Supplier("navya","jam");
 		Computer computer1 = new Computer("dell", supplier1, 10);
 		computerservice.add(computer1);
 
@@ -42,7 +42,7 @@ public class ComputerController {
 	@GetMapping("/computers")
 	public ModelAndView computerDetails(@RequestParam("id")int id) {
 		Computer computer= computerservice.findComputerById(id);
-		ModelAndView modelAndView = new ModelAndView("details", "computer",computer);
+		ModelAndView modelAndView = new ModelAndView("computerdetails", "computer",computer);
 		return modelAndView;
 	}
 	@GetMapping("/computerlists")

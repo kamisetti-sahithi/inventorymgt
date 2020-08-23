@@ -21,8 +21,8 @@ public class PhoneController {
 	private IPhoneService phnservice;
 	@PostConstruct
 	public void run() {
-		Supplier supplier1=new Supplier("yasaswini");
-		Supplier supplier2=new Supplier("navya");
+		Supplier supplier1=new Supplier("yasaswini","sahithi");
+		Supplier supplier2=new Supplier("navya","jam");
 		Phone phone1=new Phone("realme", supplier1, 1000);
 		phnservice.add(phone1);
 		Phone phone2=new Phone("mi", supplier2, 2000);
@@ -34,7 +34,7 @@ public class PhoneController {
 	@GetMapping("/phones")
 	public ModelAndView phoneDetails(@RequestParam("id")int id) {
 		Phone phone = phnservice.findPhoneById(id);
-		ModelAndView modelAndView = new ModelAndView("details", "phone",phone);
+		ModelAndView modelAndView = new ModelAndView("phone details", "phone",phone);
 		return modelAndView;
 	}
 	@GetMapping("/phonelists")

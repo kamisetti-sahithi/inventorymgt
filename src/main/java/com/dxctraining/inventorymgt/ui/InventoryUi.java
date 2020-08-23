@@ -38,14 +38,14 @@ public class InventoryUi {
 	@PostConstruct
 	public void runApp() {
 		try {
-			Supplier supplier1 = new Supplier("yasaswini");
-			Supplier supplier2 = new Supplier("navya");
+			Supplier supplier1 = new Supplier("yasaswini","sahithi");
+			Supplier supplier2 = new Supplier("navya","jam");
 			supplierservice.addSupplier(supplier1);
 			supplierservice.addSupplier(supplier2);
 
 			int id1 = supplier1.getId();
 			Supplier sup1 = supplierservice.findSupplierById(id1);
-			System.out.println(sup1.getId() + "  " + sup1.getName());
+			System.out.println(sup1.getId() + "  " + sup1.getName()+" "+sup1.getPassword());
 
 			Item item1 = new Item("pendrive", supplier1);
 			item1 = itemservice.addItem(item1);

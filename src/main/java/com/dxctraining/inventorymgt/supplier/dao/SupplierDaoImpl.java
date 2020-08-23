@@ -49,6 +49,12 @@ public  class SupplierDaoImpl implements ISupplierDao {
 			return supplier;
 			
 		}
+
+	@Override
+	public Supplier updateSupplier(Supplier supplier) {
+		entityManager.merge(supplier);
+		return supplier;
+	}
 	
 	 
 }

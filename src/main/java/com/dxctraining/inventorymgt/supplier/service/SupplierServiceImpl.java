@@ -1,4 +1,5 @@
 package com.dxctraining.inventorymgt.supplier.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,27 +17,43 @@ public class SupplierServiceImpl implements ISupplierService {
 
 	@Autowired
 	private ISupplierDao dao;
+
 	@Override
 	public Supplier findSupplierById(int id) {
 		Supplier supplier = dao.findSupplierById(id);
 		return supplier;
 	}
-@Override
+
+	@Override
 	public Supplier addSupplier(Supplier supplier) {
+		validateSupplier(supplier);
 		supplier = dao.addSupplier(supplier);
 		return supplier;
 
 	}
 
-@Override
+	public void validateSupplier(Supplier supplier) {
+		if (supplier == null) {
+			throw new SupplierNotFoundException("supplier not found");
+		}
+
+	}
+
+	@Override
 	public void remove(int id) {
 		dao.remove(id);
 	}
-	
-@Override
-public List<Supplier> displaySuppliers() {
-	List<Supplier>suppliers=dao.displaySuppliers();
-	return suppliers;
-}
-	 
+
+	@Override
+	public List<Supplier> displaySuppliers() {
+		List<Supplier> suppliers = dao.displaySuppliers();
+		return suppliers;
+	}
+
+	@Override
+	public Supplier updateSupplier(Supplier supplier) {
+		validateSupplier(supplier);
+		dao.updateSupplier(supplier);
+		return supplier;
+	}
 }
