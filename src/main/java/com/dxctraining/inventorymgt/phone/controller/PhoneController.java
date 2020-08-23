@@ -1,6 +1,7 @@
 package com.dxctraining.inventorymgt.phone.controller;
 import com.dxctraining.inventorymgt.phone.entities.*;
 import com.dxctraining.inventorymgt.phone.service.IPhoneService;
+import com.dxctraining.inventorymgt.supplier.dto.Data;
 import com.dxctraining.inventorymgt.supplier.entities.Supplier;
 import com.dxctraining.inventorymgt.supplier.service.ISupplierService;
 
@@ -19,6 +20,10 @@ public class PhoneController {
 	private ISupplierService supplierservice;
 	@Autowired
 	private IPhoneService phnservice;
+	@Autowired
+	private Data sessionData;
+	
+	
 	@PostConstruct
 	public void run() {
 		Supplier supplier1=new Supplier("yasaswini","sahithi");
@@ -44,6 +49,31 @@ public class PhoneController {
 		return modelAndView;
 		
 		
+	}
+	@GetMapping("/login")
+	public ModelAndView login() {
+		ModelAndView modelAndView = new ModelAndView("login");
+		return modelAndView;
+	}
+	
+	@GetMapping("/processlogin")
+	public ModelAndView processLogin(@RequestParam("id")int id,@RequestParam("password")String password) {
+		boolean correct = supplierservice.authentication(id,password);
+		if(correct) {
+			sessionData.saveLogin(id);
+			Supplier supplier = supplierservice.findSupplierById(id);
+			ModelAndView modelAndView = new ModelAndView("supplierdetails","supplier",supplier);
+			return modelAndView;
+		}
+			ModelAndView modelAndView = new ModelAndView("login");
+			return modelAndView;
+	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logout() {
+		sessionData.clear();
+		ModelAndView modelAndView = new ModelAndView("login");
+		return modelAndView;
 	}
 	
 	
