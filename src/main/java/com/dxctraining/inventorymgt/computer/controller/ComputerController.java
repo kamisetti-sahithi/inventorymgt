@@ -1,5 +1,6 @@
 package com.dxctraining.inventorymgt.computer.controller;
 
+import com.dxctraining.inventorymgt.computer.dto.CreateComputerRequest;
 import com.dxctraining.inventorymgt.computer.entities.*;
 import com.dxctraining.inventorymgt.computer.service.*;
 import com.dxctraining.inventorymgt.phone.entities.Phone;
@@ -60,7 +61,7 @@ public class ComputerController {
 	}
 	
 	@GetMapping("/processaddcomputer")
-	public ModelAndView processAddComputer(@RequestParam("name")String name, @RequestParam("disksize")int disksize) {
+	public ModelAndView processAddComputer(@RequestParam("name")String name, @RequestParam("diskSize")int diskSize) {
 		Computer computer = new Computer();
 		computer=computerservice.add(computer);
 		ModelAndView modelAndView = new ModelAndView("processaddcomputer","computer",computer);

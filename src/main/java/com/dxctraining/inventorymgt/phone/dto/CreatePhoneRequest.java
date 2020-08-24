@@ -1,6 +1,8 @@
 package com.dxctraining.inventorymgt.phone.dto;
 
-public class CreatePhoneRequest {
+import com.dxctraining.inventorymgt.item.entities.Item;
+
+public class CreatePhoneRequest extends Item {
 	private String name;
 	private int storageSize;
 	
@@ -16,6 +18,7 @@ public class CreatePhoneRequest {
 	public void setStoragesize(int storagesize) {
 		this.storageSize = storagesize;
 	}
+	
 
 }
 

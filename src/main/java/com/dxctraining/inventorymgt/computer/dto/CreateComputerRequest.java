@@ -1,6 +1,8 @@
-package com.dxctraining.inventorymgt.computer.controller;
+package com.dxctraining.inventorymgt.computer.dto;
 
-public class CreateComputerRequest {
+import com.dxctraining.inventorymgt.item.entities.Item;
+
+public class CreateComputerRequest extends Item {
 	private String name;
 	private int disksize;
 	
