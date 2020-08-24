@@ -15,6 +15,8 @@ import com.dxctraining.inventorymgt.supplier.dto.*;
 public class SupplierController {
 	@Autowired
 	private ISupplierService supplierservice;
+	@Autowired
+	private Data sessionData;
 	@PostConstruct
 	public void init() {
 		Supplier supplier1 = new Supplier("yasaswini","sahithi");
@@ -60,6 +62,32 @@ public class SupplierController {
 		ModelAndView modelAndView = new ModelAndView("postregister","supplier",newSupplier);
 		return modelAndView;
 	}
+	@GetMapping("/login")
+	public ModelAndView login() {
+		ModelAndView modelAndView = new ModelAndView("login");
+		return modelAndView;
+	}
+	
+	@GetMapping("/processlogin")
+	public ModelAndView processLogin(@RequestParam("id")int id,@RequestParam("password")String password) {
+		boolean correct = supplierservice.authentication(id,password);
+		if(correct) {
+			sessionData.saveLogin(id);
+			Supplier supplier = supplierservice.findSupplierById(id);
+			ModelAndView modelAndView = new ModelAndView("details","supplier",supplier);
+			return modelAndView;
+		}
+			ModelAndView modelAndView = new ModelAndView("login");
+			return modelAndView;
+	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logout() {
+		sessionData.clear();
+		ModelAndView modelAndView = new ModelAndView("login");
+		return modelAndView;
+	}
+	
 	
 	
 

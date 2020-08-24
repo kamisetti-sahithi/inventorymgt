@@ -1,4 +1,5 @@
 package com.dxctraining.inventorymgt.phone.controller;
+import com.dxctraining.inventorymgt.phone.dto.CreatePhoneRequest;
 import com.dxctraining.inventorymgt.phone.entities.*;
 import com.dxctraining.inventorymgt.phone.service.IPhoneService;
 import com.dxctraining.inventorymgt.supplier.dto.Data;
@@ -50,31 +51,26 @@ public class PhoneController {
 		
 		
 	}
-	@GetMapping("/login")
-	public ModelAndView login() {
-		ModelAndView modelAndView = new ModelAndView("login");
+	@GetMapping("/addphone")
+	public ModelAndView addPhone() {
+		ModelAndView modelAndView = new ModelAndView("addphone");
+		return modelAndView;
+	}
+	@GetMapping("/processaddphone")
+	public ModelAndView processAddPhone(@RequestParam("name")String name, @RequestParam("storageSize")int storageSize) {
+		Phone phone = new Phone();
+		ModelAndView modelAndView = new ModelAndView("processaddphone","phone",phone);
 		return modelAndView;
 	}
 	
-	@GetMapping("/processlogin")
-	public ModelAndView processLogin(@RequestParam("id")int id,@RequestParam("password")String password) {
-		boolean correct = supplierservice.authentication(id,password);
-		if(correct) {
-			sessionData.saveLogin(id);
-			Supplier supplier = supplierservice.findSupplierById(id);
-			ModelAndView modelAndView = new ModelAndView("supplierdetails","supplier",supplier);
-			return modelAndView;
-		}
-			ModelAndView modelAndView = new ModelAndView("login");
-			return modelAndView;
-	}
-	
-	@GetMapping("/logout")
-	public ModelAndView logout() {
-		sessionData.clear();
-		ModelAndView modelAndView = new ModelAndView("login");
+	@GetMapping("/postaddphone")
+	public ModelAndView postAddPhone() {
+		CreatePhoneRequest phone = new CreatePhoneRequest();
+		ModelAndView modelAndView = new ModelAndView("postaddphone","phone",phone);
 		return modelAndView;
 	}
+
+	
 	
 	
 

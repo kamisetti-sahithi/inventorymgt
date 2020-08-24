@@ -53,6 +53,26 @@ public class ComputerController {
 		
 		
 	}
+	@GetMapping("/addcomputer")
+	public ModelAndView addComputer() {
+		ModelAndView modelAndView = new ModelAndView("addcomputer");
+		return modelAndView;
+	}
+	
+	@GetMapping("/processaddcomputer")
+	public ModelAndView processAddComputer(@RequestParam("name")String name, @RequestParam("disksize")int disksize) {
+		Computer computer = new Computer();
+		computer=computerservice.add(computer);
+		ModelAndView modelAndView = new ModelAndView("processaddcomputer","computer",computer);
+		return modelAndView;
+	}
+	
+	@GetMapping("/postaddcomputer")
+	public ModelAndView postAddComputer() {
+		CreateComputerRequest computer = new CreateComputerRequest();
+		ModelAndView modelAndView = new ModelAndView("postaddcomputer","computer",computer);
+		return modelAndView;
+	}
 	
 
 }
